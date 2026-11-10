@@ -12,7 +12,7 @@ This repo holds no source code. The server runs at the endpoint below.
 
 ## Tools
 
-Every tool is read-only. It looks up public DNS records, or reads the headers you paste, and grades them.
+Every tool is read-only. The checks look up public DNS records and fetch the files a domain publishes for MTA-STS and BIMI: the policy file, the logo and the certificate. The header tool reads the headers you paste. None of them change anything.
 
 | Tool | What it checks |
 |---|---|
