@@ -1,5 +1,7 @@
 # TamingDNS MCP server
 
+[![mcptry](https://mcptry.com/badge/com.tamingdns/mcp)](https://mcptry.com/servers/com.tamingdns/mcp)
+
 A remote MCP server that checks a domain's email authentication and analyses raw email headers. It is the same engine as the tools on [tamingdns.com](https://tamingdns.com).
 
 This repo holds no source code. The server runs at the endpoint below.
