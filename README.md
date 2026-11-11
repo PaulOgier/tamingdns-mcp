@@ -14,7 +14,7 @@ This repo holds no source code. The server runs at the endpoint below.
 
 ## Tools
 
-Every tool is read-only. The checks look up public DNS records and fetch the files a domain publishes for MTA-STS and BIMI: the policy file, the logo and the certificate. The header tool reads the headers you paste. None of them change anything.
+Every tool is read-only. The checks look up public DNS records and fetch the files a domain publishes for MTA-STS, BIMI and mail-client autoconfiguration: the policy file, the logo, the certificate and the autoconfig XML. The header tool reads the headers you paste. None of them change anything.
 
 | Tool | What it checks |
 |---|---|
@@ -27,9 +27,14 @@ Every tool is read-only. The checks look up public DNS records and fetch the fil
 | `check_bimi` | BIMI record, SVG logo, VMC certificate chain |
 | `check_dane` | TLSA records for SMTP DANE at `_25._tcp.<mx-host>` (RFC 7672) |
 | `check_dnssec` | DNSSEC chain of trust from the root to the domain |
+| `check_m365` | Everything Microsoft 365 expects in DNS: SPF include, DKIM selector1/selector2, DMARC, MX, MTA-STS, Autodiscover, TLS-RPT, BIMI, Teams SIP SRV |
+| `check_google_workspace` | Everything Google Workspace expects in DNS: MX, SPF include, the `google` DKIM key, DMARC, MTA-STS, TLS-RPT, BIMI |
+| `check_dns_propagation` | One record type at one name, asked of 14 public resolvers, to see whether a change has spread |
 | `analyze_email_headers` | Raw email headers, for spoofing and phishing signs |
 
-`check_dkim` needs `domain` and `selector`. `analyze_email_headers` needs `headers`. The rest need only `domain`.
+`check_dkim` needs `domain` and `selector`. `check_dns_propagation` needs `domain` and takes an optional `type` (A, AAAA, MX, TXT, CNAME, NS, SOA, SRV, CAA, PTR or TLSA; default A). `analyze_email_headers` needs `headers`. The rest need only `domain`.
+
+`check_m365` and `check_google_workspace` are built from the same results the single checks return, so they never disagree with them. Not sure which provider a domain uses? `check_mx` names it.
 
 There is also one prompt, `audit_email_auth`, which runs the four email-auth checks against a domain and combines the results.
 
@@ -70,6 +75,8 @@ curl -sS -X POST https://tamingdns.com/mcp \
 Ask your agent things like:
 
 - "Check the DMARC record for example.com"
+- "Is example.com set up correctly for Microsoft 365?"
+- "I just changed the MX record for example.com. Has it spread yet?"
 - "Is the DKIM key at selector1 for example.com long enough?"
 - "Here are the headers of an email I got. Is it spoofed?"
 
