@@ -1,6 +1,6 @@
 # TamingDNS MCP server
 
-[![mcptry](https://mcptry.com/badge/com.tamingdns/mcp)](https://mcptry.com/servers/com.tamingdns/mcp)
+[![mcptry](https://mcptry.com/badge/com.tamingdns/mcp)](https://mcptry.com/servers/com.tamingdns/mcp) [![Glama](https://glama.ai/mcp/connectors/com.tamingdns/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/com.tamingdns/mcp)
 
 A remote MCP server that checks a domain's email authentication and analyses raw email headers. It is the same engine as the tools on [tamingdns.com](https://tamingdns.com).
 
@@ -40,7 +40,7 @@ There is also one prompt, `audit_email_auth`, which runs the four email-auth che
 
 ## Connect
 
-[Install in VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=tamingdns&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Ftamingdns.com%2Fmcp%22%7D). One-click links for Cursor, LM Studio and Goose, and config for Windsurf and Zed, are on [tamingdns.com/mcp](https://tamingdns.com/mcp).
+[Install in VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=tamingdns&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Ftamingdns.com%2Fmcp%22%7D). One-click links for Cursor, LM Studio and Goose are on [tamingdns.com/mcp](https://tamingdns.com/mcp).
 
 Claude Code:
 
@@ -57,6 +57,56 @@ Cursor, in `.cursor/mcp.json` or `~/.cursor/mcp.json`:
   }
 }
 ```
+
+VS Code: run MCP: Add Server, or add this to `.mcp.json` at the workspace root, or to `~/.copilot/mcp-config.json` for every workspace:
+
+```json
+{
+  "mcpServers": {
+    "tamingdns": {
+      "type": "http",
+      "url": "https://tamingdns.com/mcp",
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+Windsurf: in Cascade's MCP menu, choose Open MCP config file and add:
+
+```json
+{
+  "mcpServers": {
+    "tamingdns": { "serverUrl": "https://tamingdns.com/mcp" }
+  }
+}
+```
+
+Zed: use Settings > AI > MCP Servers > Add Server > Add Remote Server, or add this to your settings file:
+
+```json
+{
+  "context_servers": {
+    "tamingdns": { "url": "https://tamingdns.com/mcp" }
+  }
+}
+```
+
+LM Studio: in the Program tab, choose Install > Edit `mcp.json` and add the same block as Cursor. LM Studio reads Cursor's format.
+
+Goose, in `~/.config/goose/config.yaml`:
+
+```yaml
+extensions:
+  tamingdns:
+    name: TamingDNS
+    type: streamable_http
+    uri: https://tamingdns.com/mcp
+    enabled: true
+    timeout: 300
+```
+
+Claude Desktop or claude.ai: open the [TamingDNS listing in the Claude directory](https://claude.ai/directory/tamingdns) and click Connect to Claude.
 
 A client that only speaks stdio:
 
