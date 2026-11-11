@@ -40,6 +40,8 @@ There is also one prompt, `audit_email_auth`, which runs the four email-auth che
 
 ## Connect
 
+[Install in VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=tamingdns&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Ftamingdns.com%2Fmcp%22%7D). One-click links for Cursor, LM Studio and Goose, and config for Windsurf and Zed, are on [tamingdns.com/mcp](https://tamingdns.com/mcp).
+
 Claude Code:
 
 ```
