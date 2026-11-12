@@ -14,7 +14,7 @@ This repo holds no source code. The server runs at the endpoint below.
 
 ## Tools
 
-Every tool is read-only. The checks look up public DNS records and fetch the files a domain publishes for MTA-STS, BIMI and mail-client autoconfiguration: the policy file, the logo, the certificate and the autoconfig XML. The header tool reads the headers you paste. None of them change anything.
+Every tool is read-only. The checks look up public DNS records and fetch what a domain publishes for MTA-STS, BIMI, mail-client autoconfiguration and its website: the policy file, the logo, the certificates, the autoconfig XML and the site's HTTPS response. The header, bounce and DMARC report tools read what you paste. None of them change anything.
 
 | Tool | What it checks |
 |---|---|
@@ -30,9 +30,14 @@ Every tool is read-only. The checks look up public DNS records and fetch the fil
 | `check_m365` | Everything Microsoft 365 expects in DNS: SPF include, DKIM selector1/selector2, DMARC, MX, MTA-STS, Autodiscover, TLS-RPT, BIMI, Teams SIP SRV |
 | `check_google_workspace` | Everything Google Workspace expects in DNS: MX, SPF include, the `google` DKIM key, DMARC, MTA-STS, TLS-RPT, BIMI |
 | `check_dns_propagation` | One record type at one name, asked of 14 public resolvers, to see whether a change has spread |
+| `check_txt` | Every TXT record at a domain, labelled by vendor, with duplicate SPF records, misplaced DKIM keys and stale tokens flagged |
+| `check_website` | One hostname's TLS certificate, security headers and HTTPS redirects |
+| `check_mcp_keys` | The `v=MCPv1` TXT records the MCP Registry DNS login checks a signature against |
 | `analyze_email_headers` | Raw email headers, for spoofing and phishing signs |
+| `decode_bounce` | A pasted bounce or SMTP error: the reply and enhanced status codes, what they mean and how to fix it |
+| `analyze_dmarc_report` | One DMARC aggregate (RUA) report, pasted as XML text |
 
-`check_dkim` needs `domain` and `selector`. `check_dns_propagation` needs `domain` and takes an optional `type` (A, AAAA, MX, TXT, CNAME, NS, SOA, SRV, CAA, PTR or TLSA; default A). `analyze_email_headers` needs `headers`. The rest need only `domain`.
+`check_dkim` needs `domain` and `selector`. `check_dns_propagation` needs `domain` and takes an optional `type` (A, AAAA, MX, TXT, CNAME, NS, SOA, SRV, CAA, PTR or TLSA; default A). `analyze_email_headers` needs `headers`, `decode_bounce` needs `bounce` and `analyze_dmarc_report` needs `report`. The rest need only `domain`.
 
 `check_m365` and `check_google_workspace` are built from the same results the single checks return, so they never disagree with them. Not sure which provider a domain uses? `check_mx` names it.
 
