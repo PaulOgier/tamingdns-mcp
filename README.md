@@ -20,6 +20,7 @@ Every tool is read-only. The checks look up public DNS records and fetch what a 
 |---|---|
 | `check_spf` | SPF record, grade, the `all` qualifier through `redirect=` chains |
 | `check_dkim` | DKIM key at `<selector>._domainkey.<domain>`: revocation, key length |
+| `discover_dkim` | Every DKIM key under the 500-plus selectors TamingDNS knows and the `*._domainkey` wildcard, when you don't know the selector. On a Mimecast domain it also scans Mimecast's date-stamped selectors in the background and says when to call again |
 | `check_dmarc` | `_dmarc` record and policy |
 | `check_mx` | MX hosts, their addresses, PTR and forward-confirmed reverse DNS |
 | `check_mta_sts` | MTA-STS TXT record and policy (RFC 8461) |
