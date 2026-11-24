@@ -1,6 +1,6 @@
 # TamingDNS MCP server
 
-[![mcptry](https://mcptry.com/badge/com.tamingdns/mcp)](https://mcptry.com/servers/com.tamingdns/mcp) [![Glama](https://glama.ai/mcp/connectors/com.tamingdns/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/com.tamingdns/mcp) <a href="https://www.saashub.com/tamingdns?utm_source=badge&utm_campaign=badge&utm_content=tamingdns&badge_variant=color&badge_kind=approved"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="Approved on SaaSHub" height="20"></a>
+[![mcptry](https://mcptry.com/badge/com.tamingdns/mcp)](https://mcptry.com/servers/com.tamingdns/mcp) [![Glama](https://glama.ai/mcp/connectors/com.tamingdns/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/com.tamingdns/mcp) <a href="https://www.saashub.com/tamingdns?utm_source=badge&utm_campaign=badge&utm_content=tamingdns&badge_variant=color&badge_kind=approved"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="Approved on SaaSHub" height="28"></a>
 
 A remote MCP server that checks a domain's email authentication and analyses raw email headers. It is the same engine as the tools on [tamingdns.com](https://tamingdns.com).
 
